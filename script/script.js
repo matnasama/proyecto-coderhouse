@@ -48,7 +48,7 @@ class Producto {
 cargarEventos();
 
 function cargarEventos() {
-    iconMenu.addEventListener('click', showMenu);
+    iconMenu.addEventListener('click', mostrarMenu);
 
     document.addEventListener('DOMContentLoaded', () => {
         renderizarProductos();
@@ -219,7 +219,7 @@ function recorrerArray(arregloProductos) {
     });
 }
 
-function showMenu() {
+function mostrarMenu() {
     let navbar = document.getElementById('myTopnav');
     navbar.className = navbar.className === 'topnav' ? (navbar.className += ' responsive') : (navbar.className = 'topnav');
 }

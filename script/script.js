@@ -45,7 +45,6 @@ class Producto {
     }
 }
 
-
 cargarEventos();
 
 function cargarEventos() {
@@ -87,7 +86,6 @@ function cargarEventos() {
         modalForm.style.display = 'none';
     };
 
-
 }
 function cargarCarritoLocalStorage() {
     productosCarrito = JSON.parse(localStorage.getItem('productosLS')) || [];
@@ -95,7 +93,6 @@ function cargarCarritoLocalStorage() {
 
 function eliminarProducto(e) {
     if (e.target.classList.contains('eliminar-producto')) {
-
         const productoId = parseInt(e.target.getAttribute('id'));
         alertProducto('error', 'producto eliminado', '#FF0000');
         productosCarrito = productosCarrito.filter((producto) => producto.id !== productoId);
@@ -106,7 +103,6 @@ function eliminarProducto(e) {
 
 function agregarProducto(e) {
     e.preventDefault();
-
     if (e.target.classList.contains('agregar-carrito')) {
         const productoAgregado = e.target.parentElement;
         alertProducto('success', 'producto agregado', '#34b555');
@@ -130,43 +126,34 @@ function leerDatosProducto(producto) {
         Number(producto.querySelector('p').textContent.replace('$', '')),
         parseInt(producto.querySelector('a').getAttribute('id'))
     );
-
     datosProducto.obtenerTotal();
-
     agregarAlCarrito(datosProducto);
 }
 
 function agregarAlCarrito(productoAgregar) {
-
     const existeEnCarrito = productosCarrito.some((producto) => producto.id === productoAgregar.id);
-    
     if (existeEnCarrito) {
-        
         const productos = productosCarrito.map((producto) => {
-            if (producto.id === productoAgregar.id) {
-                producto.cantidad++;
-                producto.subtotal = producto.precio * producto.cantidad;              
-                return producto;
-            } else {
+        if (producto.id === productoAgregar.id) {
+            producto.cantidad++;
+            producto.subtotal = producto.precio * producto.cantidad;              
+            return producto;
+        } else {
                 return producto;
             }
-        });
-
+    });
         productosCarrito = productos; 
     } else {
         productosCarrito.push(productoAgregar);
     }
-
     guardarProductosLocalStorage();
     mostrarProductosCarrito();
 }
 
 function mostrarProductosCarrito() {
     limpiarHTML();
-
     productosCarrito.forEach((producto) => {
         const { imagen, nombre, precio, cantidad, subtotal, id } = producto;
-
         const div = document.createElement('div');
         div.classList.add('contenedor-producto');
         div.innerHTML = `
@@ -177,7 +164,6 @@ function mostrarProductosCarrito() {
 			<P>$${subtotal}</P>
 			<a href="#" class="eliminar-producto" id="${id}"> X </a>
 		`;
-
         containerCart.appendChild(div);
     });
     mostrarCantidadProductos();
@@ -186,7 +172,6 @@ function mostrarProductosCarrito() {
 
 function calcularTotal() {
     let total = productosCarrito.reduce((sumaTotal, producto) => sumaTotal + producto.subtotal, 0);
-
     totalCarrito.innerHTML = `Total a Pagar: $${total}`;
 }
 
@@ -199,32 +184,25 @@ function limpiarHTML() {
 function guardarProductosLocalStorage() {
     localStorage.setItem('productosLS', JSON.stringify(productosCarrito));
 }
+
 async function realizarPeticion(datos) {
     try {
         const response = await fetch(datos);
-
-
         if (!response.ok) {
             throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
         }
-
         const data = await response.json();
-
         return data;
     } catch (error) {
       
         console.error(error);
-    } finally {
-     
-    }
+    } 
 }
 
 async function renderizarProductos() {
-
+    // const productos = await realizarPeticion(url);
     const productos = await realizarPeticion(file);
-
     recorrerArray(productos);
-
 }
 
 function recorrerArray(arregloProductos) {
@@ -237,15 +215,12 @@ function recorrerArray(arregloProductos) {
 			<p>$${producto.precio}</p>
 			<a id=${producto.id} class="boton agregar-carrito" href="#">Agregar</a>
         `;
-
         containerProducts.appendChild(divCard);
     });
 }
 
 function showMenu() {
     let navbar = document.getElementById('myTopnav');
-
-    
     navbar.className = navbar.className === 'topnav' ? (navbar.className += ' responsive') : (navbar.className = 'topnav');
 }
 
@@ -257,13 +232,10 @@ btnFiltro.addEventListener('click', myFunction);
 async function myFunction() {
     const productos = await realizarPeticion(file);
     let productosFiltrados, filtro;
-
     filtro = inputFiltar.value.toLowerCase();
-
     productosFiltrados = productos.filter((producto) => producto.nombre.toLowerCase().includes(filtro));
 
     if (productosFiltrados.length > 0) {
-    
         limpiarContenedorProductos();
         recorrerArray(productosFiltrados);
     } else {
@@ -287,23 +259,16 @@ function limpiarContenedorProductos() {
 
 modalForm.addEventListener('submit', function (event) {
     event.preventDefault();
-    
     const nombre = document.getElementById('fname').value;
     const apellido = document.getElementById('lname').value;
     const email = document.getElementById('email').value;
-
     const cliente = {};
-
     cliente.nombre = nombre;
     cliente.apellido = apellido;
     cliente.email = email;
-
     cliente.nombre = nombre.toUpperCase();
     cliente.apellido = apellido.toUpperCase();
-
-
     clientes.push(cliente);
-
     localStorage.setItem('clientesLS', JSON.stringify(clientes));
     modalForm.reset();
     mostrarNombre();
@@ -319,7 +284,6 @@ function mostrarNombre() {
         `;
         myNav.appendChild(userName);
         modalForm.style.display = 'none';
-
     });
 }
 

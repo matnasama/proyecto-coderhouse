@@ -1,3 +1,4 @@
+const url ='https://github.com/matnasama/proyecto-coderhouse/blob/main/data/productos.json';
 const file ='../data/productos.json';
 const containerProducts = document.getElementById('container-products');
 const modal = document.getElementById('ventana-modal');

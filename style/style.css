@@ -23,14 +23,7 @@ main {
     padding-top: 32px;
 }
 
-footer {
-    background-color: #333;
-    width: 100%;
-    height: 150px;
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-}
+
 
 .banner {
     
@@ -80,7 +73,7 @@ footer {
     display:flex;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 439px) {
     .topnav a:not(:first-child) {
         display: none;
     }
@@ -88,9 +81,13 @@ footer {
         float: right;
         display: block;
     }
+
+    main {
+        margin-bottom: 270px;
+    }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 576px) {
     .topnav.responsive {
         position: relative;
     }
@@ -104,6 +101,7 @@ footer {
         display: block;
         text-align: left;
     }
+
 }
 
 
@@ -439,14 +437,108 @@ h2{
 
 .medios-de-pago {
     display: flex;
-    height: 150px;
-    place-items: center;
+    height: 100px;
     background-color: #c79cc9;
     border-radius: 20px;
+    margin-bottom: 50px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+
+}
+
+footer {
+    background-color: #333;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    color: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+
+.footer-top-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 48px;
+    margin: 0 auto;
+    padding: 16px;
+    min-height: 160px;
+    place-items: center;
+}
+
+.footer-top-wrapper > section {
+    width: 180px;
+}
+
+h2 {
+    text-align: left;
+    color: #d2d0e6;
+    margin-top: 0px;
+    margin-bottom: 16px;
+    opacity: 0.7;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+menu li {
+    margin-bottom: 16px;
+}
+
+
+.logo {
+    width: 180px;
+    margin-bottom: 8px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 180px;
+}
+
+.social-links img {
+    width: 30px;
+    height: 30px;
+}
+
+.footer-top {
+    max-width: 800px;
+}
+
+
+.footer-bottom {
+    height: 60px;
+    margin-top: 48px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #1f1b3d;
+    padding: 4px;
+}
+
+.footer-bottom > small {
+    font-size: 16px;
+    margin: 0 4px;
 }
 
 .row {
-    width: 50%;
-    text-align: center;
-    font-size: 2em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 48px;
+    margin: 0 auto;
+    padding: 16px;
+    place-items: center;
 }

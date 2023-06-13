@@ -73,6 +73,17 @@ main {
     display:flex;
 }
 
+@media screen and (max-width: 576px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+
+}
+
 @media screen and (max-width: 439px) {
     .topnav a:not(:first-child) {
         display: none;

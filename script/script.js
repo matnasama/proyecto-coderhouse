@@ -277,13 +277,14 @@ modalForm.addEventListener('submit', function (event) {
 
 function mostrarNombre() {
     clientes.forEach((cliente) => {
-        const userName = document.createElement('a');
+        const userName = document.createElement('p');
         userName.classList.add('name');
         userName.innerHTML += `
 			Hola ${cliente.nombre}!
         `;
         myNav.appendChild(userName);
         modalForm.style.display = 'none';
+        myForm.style.display = 'none';
     });
 }
 
@@ -314,8 +315,6 @@ function finalizarCompra() {
 
 }
 function vaciarCarrito() {
-
-
 
     Swal.fire({
         title: 'Vaciar carrito',

@@ -1,4 +1,4 @@
-const url ='https://github.com/matnasama/proyecto-coderhouse/blob/main/data/productos.json';
+const url ='https://raw.githubusercontent.com/matnasama/proyecto-coderhouse/main/data/productos.json';
 const file ='../data/productos.json';
 const containerProducts = document.getElementById('container-products');
 const modal = document.getElementById('ventana-modal');
@@ -200,8 +200,8 @@ async function realizarPeticion(datos) {
 }
 
 async function renderizarProductos() {
-    // const productos = await realizarPeticion(url);
-    const productos = await realizarPeticion(file);
+    const productos = await realizarPeticion(url);
+    // const productos = await realizarPeticion(file);
     recorrerArray(productos);
 }
 
@@ -288,21 +288,34 @@ function mostrarNombre() {
 }
 
 function finalizarCompra() {
-    Swal.fire({
-        icon: 'success',
-        title: 'Compra finalizada',
-        text: '¡Has finalizado tu compra!',
-        timerProgressBar: true,
-        timer: 3000,
-    });
+    if (productosCarrito.length < 1) {
+        Swal.fire({
+            title: 'Operación cancelada',
+            icon: 'info',
+            text: 'El carrito se encuentra vacío',
+            timerProgressBar: true,
+            timer: 3000,
+        });
+        modal.style.display = 'none';
+    } else {
+           Swal.fire({
+            icon: 'success',
+            title: 'Compra finalizada',
+            text: '¡Has finalizado tu compra!',
+            timerProgressBar: true,
+            timer: 3000,
+            });
 
-    eliminarCarritoLS();
-    cargarCarritoLocalStorage();
-    mostrarProductosCarrito();
-    modal.style.display = 'none';
+            eliminarCarritoLS();
+            cargarCarritoLocalStorage();
+            mostrarProductosCarrito();
+            modal.style.display = 'none';
 }
 
+}
 function vaciarCarrito() {
+
+
 
     Swal.fire({
         title: 'Vaciar carrito',
